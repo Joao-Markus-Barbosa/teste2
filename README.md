@@ -1,22 +1,15 @@
 ```mermaid
 erDiagram
 
-  USUARIO        ||--o{ OCORRENCIA     : relata
-  USUARIO        ||--o{ RECURSO        : acessa
-  USUARIO        ||--o{ INTERACAO      : gera
+ 
+  
   OCORRENCIA     }o--|| SENSOR         : detectada_por
   SENSOR         ||--o{ DADO_SENSOR    : gera
-  DADO_SENSOR    }o--|| SENSOR         : origem
-  DADO_SENSOR    }o--|| RECURSO        : alimenta
+  
+  
   RECURSO        ||--o{ DISPONIBILIDADE: possui
 
-  USUARIO {
-    int     id_usuario       PK
-    string  nome
-    string  cpf
-    string  tipo_usuario
-    string  localizacao
-  }
+  
 
   OCORRENCIA {
     int       id_ocorrencia    PK
@@ -41,6 +34,13 @@ erDiagram
     int       sensor_id        FK
     int       recurso_id       FK
   }
+ USUARIO {
+    int     id_usuario       PK
+    string  nome
+    string  cpf
+    string  tipo_usuario
+    string  localizacao
+  }
 
   RECURSO {
     int     id_recurso       PK
@@ -49,7 +49,8 @@ erDiagram
     string  localizacao
     int     usuario_id       FK
   }
-
+USUARIO        ||--o{ OCORRENCIA     : relata
+  USUARIO        ||--o{ RECURSO        : acessa
   DISPONIBILIDADE {
     int       id_disponibilidade  PK
     int       recurso_id          FK
@@ -57,10 +58,5 @@ erDiagram
     datetime  ultima_atualizacao
   }
 
-  INTERACAO {
-    int       id_interacao    PK
-    int       usuario_id      FK
-    datetime  data_hora
-    string    tipo_acao
-  }
+ 
 ```
