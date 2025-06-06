@@ -4,8 +4,9 @@ erDiagram
  
   
   OCORRENCIA     }o--|| SENSOR         : detectada_por
-  SENSOR         ||--o{ DADO_SENSOR    : gera
-  
+
+  USUARIO        ||--o{ OCORRENCIA     : relata
+  USUARIO        ||--o{ RECURSO        : acessa
   
   RECURSO        ||--o{ DISPONIBILIDADE: possui
 
@@ -17,7 +18,6 @@ erDiagram
     string    status
     datetime  data_hora
     string    localizacao
-    int       usuario_id        FK
   }
 
   SENSOR {
@@ -27,17 +27,9 @@ erDiagram
     string  dispositivo
   }
 
-  DADO_SENSOR {
-    int       id_dado          PK
-    datetime  data_captura
-    float     valor
-    int       sensor_id        FK
-    int       recurso_id       FK
-  }
  USUARIO {
     int     id_usuario       PK
     string  nome
-    string  cpf
     string  tipo_usuario
     string  localizacao
   }
@@ -49,8 +41,7 @@ erDiagram
     string  localizacao
     int     usuario_id       FK
   }
-USUARIO        ||--o{ OCORRENCIA     : relata
-  USUARIO        ||--o{ RECURSO        : acessa
+
   DISPONIBILIDADE {
     int       id_disponibilidade  PK
     int       recurso_id          FK
